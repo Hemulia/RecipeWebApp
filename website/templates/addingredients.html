@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+    %}
+<form method="post" class="form2">
+    <h1>Add the ingredients</h1>
+
+    <p class="ing">The ingredients must be added one by one</p>
+    <p>After all ingredients have been added you can find your recipe on the Recipes-page</p>
+    <p>
+        <input name="name" class="ing" placeholder="Fore example:   Pasta">
+    </input>
+    </p>
+    <p>
+        <button type="submit"  class="btn btn-primary">Add a Ingredient</button>
+    </p>
+</form>
+
+{% endblock %}

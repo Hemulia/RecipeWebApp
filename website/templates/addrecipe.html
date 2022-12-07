@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+    %}
+    <h1 class="sign" >Add a new Recipe</h1>
+    <p class="text"> The first step is to add the recipes name, instructions,<br> 
+      how much the ingredients cost and how many people it will feed
+      <br><br>
+      After saving the information below you can add all the ingredients to the recipe</p>
+    <form method="POST" style="width: 40%;" class="form2">
+      <label>Name of the recipe</label>
+      <textarea placeholder="Tea" name="title" id="title" class="form-control" style="height: 50px;"></textarea>
+      <br />
+      <label>Instructions for the recipe</label>
+      <textarea placeholder="Boil water..." name="instructions" id="instructions" class="form-control" style="height: 50px;"></textarea>
+      <br />
+      <label>Approximately how much did the ingredients cost</label>
+      <textarea placeholder="2.5"name="price" id="price" class="form-control" style="height: 50px;" type="number"></textarea>
+      <br />
+      <label>Approximately how many people will this recipe feed</label>
+      <textarea placeholder="2" name="people" id="people" class="form-control" style="height: 50px;" type="number"></textarea>
+      <br />
+      <label>Cooking time (please write in minutes) </label>
+      <textarea placeholder="50" name="time" id="time" class="form-control" style="height: 50px;" type="number"></textarea>
+      <br />      
+      <div>
+        <button type="submit" class="btn btn-primary">Add Recipe</button>
+      </div>
+    </form>
+    {% endblock %}

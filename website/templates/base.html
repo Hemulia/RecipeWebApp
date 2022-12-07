@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400" rel="stylesheet">
+    <title>{% block title %}Recipe{% endblock %}</title>
+  </head>
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+    nav {
+      height:80px;
+      background-color: rgb(40, 68, 61);
+    }
+    .recipe {
+      margin-left: auto;
+      margin-right: auto;
+      padding:30px;
+      background-color: rgb(246, 246, 246);
+      border-radius: 5px;
+      margin-top:30px;
+      width: 65%;
+    }
+    .form2 {
+      width: 40%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:70px;
+      margin-bottom:90px;
+    }
+    .ins {
+      margin-top: 40px;
+      font-weight: bold;
+    }
+    .ins2 {
+      margin-top: 20px;
+    }
+
+    .form3 {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top:50px;
+    }
+
+    .sign {
+      margin-top: 90px;
+      text-align: center;
+    }
+
+    .sign2 {
+      left: 0;
+      line-height: 200px;
+      margin-top: -100px;
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      width: 100%;
+    }
+
+    .content {
+      margin-bottom: 30px;
+    }
+    .text {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .ing {
+      width: 90%;
+      margin-top: 50px;
+
+    }
+
+    .cook {
+      float: right;
+    }
+
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="collapse navbar-collapse" id="navbar">
+        <div class="navbar-nav" style="margin-left: auto;margin-right: auto;">
+          {% if user.is_authenticated %}
+          <a class="nav-item nav-link" id="home" href="/">Recipes</a>
+          <a class="nav-item nav-link" id="add" href="/addrecipe">Add Recipe</a>
+          <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+          {% else %}
+          <a class="nav-item nav-link" id="login" href="/login">Login</a>
+          <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+    <div class="container">{% block content %} {% endblock %}</div>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='index.js') }}"
+    ></script>
+  </body>
+</html>
