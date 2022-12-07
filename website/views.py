@@ -19,6 +19,7 @@ def home():
 
 
 @views.route("/addrecipe", methods=["GET", "POST"])
+@login_required
 def add_name():
     if request.method == "POST":
         # get the form data
@@ -38,7 +39,7 @@ def add_name():
         else:
 
             # add the recipe to the database
-            recipe = Recipe(title=title, instructions=instructions, price=price,people=people, time=time)
+            recipe = Recipe(title=title, instructions=instructions, price=price,people=people, time=time, user_id=current_user.id)
             db.session.add(recipe)
             db.session.commit()
 
@@ -49,6 +50,7 @@ def add_name():
     return render_template("addrecipe.html", user=current_user)
 
 @views.route("/addingredients/<int:recipe_id>", methods=["GET", "POST"])
+@login_required
 def addingredients(recipe_id):
     # get the recipe from the database
     recipe = Recipe.query.get(recipe_id)
@@ -72,5 +74,4 @@ def delete_recipe():
     db.session.delete(recipe)
     db.session.commit()
     return redirect('/')
-
 
