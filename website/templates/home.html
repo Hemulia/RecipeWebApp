@@ -1,29 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="sign">{% block title %} Recipes {% endblock %}</h1>
+    <h1 class="sign">{% block title %} Welcome {{ user.first_name }} {% endblock %}</h1>
     <div class="content">
-        {% if recipes %}
-            {% for recipe in recipes %}
-                <div class="recipe">
-                    <p><h3>{{ recipe.id }} {{recipe.title}}</h3></p>
-                    <p class="cook"> Cooking time: {{ recipe.time }} minutes</p>
-                    <b>
-                        <p class="name">Serves: {{ recipe.people }}</p>
-                        <p>Price per person:  {{ "$%.2f"|format(recipe.price_per_person) }}€</p>
-
-                        <p class="ins">Ingredients</p>
-                        {% for ingredient in recipe.ingredients %}
-                        <li>{{ ingredient.name }}</li>
-                        {% endfor %}
-                    </b>
-                    <p class="ins">Instructions</p>
-                    <p class="ins2">{{ recipe.instructions }}</p>
-                    <a href="{{ url_for('view.delete_recipe', recipe_id=recipe.id) }}">Delete</a>
-                </div>
-                 {% endfor %}
-                {% else %}
-                <p class="sign2">No recipes added</p>
-                {% endif %}
+        <p>Home page here</p>
     </div>
 {% endblock %}

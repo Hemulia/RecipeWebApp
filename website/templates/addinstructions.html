@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+    %}
+<form method="post" class="form2">
+    <h1>Add the instructions</h1>
+
+    {% for instruction in instructions %}
+        <li>{{ instruction.name }}</li>
+    {% endfor %}
+
+    <p class="ing">The instructions must be added one by one</p>
+    <p>After all instructions have been added you can find your recipe on the Recipes-page</p>
+    <p>
+        <input name="name" class="ing" placeholder=""/>
+    </p>
+    <p>
+        <button type="submit"  class="btn btn-dark">Add a instruction</button>
+    </p>
+</form>
+<button type="button" class="btn btn-light">
+    <a href="/recipes" class="buttonrecipe">
+        Recipes
+    </a>
+</button>
+
+{% endblock %}

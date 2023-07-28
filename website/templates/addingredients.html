@@ -1,17 +1,30 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
-    %}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
 <form method="post" class="form2">
     <h1>Add the ingredients</h1>
+
+    {% for ingredient in ingredients %}
+        <li>{{ ingredient.name }}</li>
+    {% endfor %}
 
     <p class="ing">The ingredients must be added one by one</p>
     <p>After all ingredients have been added you can find your recipe on the Recipes-page</p>
     <p>
-        <input name="name" class="ing" placeholder="Fore example:   Pasta">
-    </input>
+        <input name="name" class="ing" placeholder="For example:   Pasta"/>
     </p>
     <p>
-        <button type="submit"  class="btn btn-primary">Add a Ingredient</button>
+        <button type="submit" class="btn btn-dark">Add an Ingredient</button>
     </p>
 </form>
+<button type="button" class="btn btn-light">
+    <a href="/recipes" class="buttonrecipe">
+        Recipes
+    </a>
+</button>
+
+{% if ingredients|length > 0 %}
+    <a href="{{ url_for('view.addinstructions', recipe_id=recipe.id) }}" class="btn btn-secondary">
+        Add Instructions
+    </a>
+{% endif %}
 
 {% endblock %}

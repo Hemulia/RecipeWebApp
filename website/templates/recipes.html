@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="sign">{% block title %}{{ user.first_name}}'s  Recipes {% endblock %}</h1>
+    <div class="addrecipe">
+        {% if recipes %}
+            {% for recipe in recipes %}
+                <div class="recipe">
+                    <p>
+                        <h3>{{recipe.title}}
+                            <a  class="delete_recipe" href="{{ url_for('view.delete_recipe', recipe_id=recipe.id) }}">delete</a>
+                        </h3>
+                    </p>
+                    <p class="cook"> Cooking time: {{ recipe.time }} minutes</p>
+                    <b>
+                        <p class="name">Serves: {{ recipe.people }}</p>
+                        <p>Price per person:  {{ "$%.2f"|format(recipe.price_per_person) }}€</p>
+
+                        <p class="ins">Ingredients</p>
+                        {% for ingredient in recipe.ingredients %}
+                        <li>{{ ingredient.name }}</li>
+                        {% endfor %}
+                    </b>
+                    <p class="ins">Instructions</p>
+                    {% for instruction in recipe.instructions %}
+                    <li>{{ instruction.name }}</li>
+                    {% endfor %}
+                </div>
+                 {% endfor %}
+                {% else %}
+                <p class="sign2">No recipes added</p>
+                {% endif %}
+    </div>
+{% endblock %}
