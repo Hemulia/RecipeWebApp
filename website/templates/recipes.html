@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="sign">{% block title %}{{ user.first_name}}'s  Recipes {% endblock %}</h1>
+    <h1 class="sign">{% block title %}{{ user.first_name }}'s Recipes {% endblock %}</h1>
     <div class="addrecipe">
         {% if recipes %}
             {% for recipe in recipes %}
                 <div class="recipe">
                     <p>
-                        <h3>{{recipe.title}}
-                            <a  class="delete_recipe" href="{{ url_for('view.delete_recipe', recipe_id=recipe.id) }}">delete</a>
+                        <h3>{{ recipe.title }}
+                            <a class="delete_recipe" href="{{ url_for('view.delete_recipe', recipe_id=recipe.id) }}">delete</a>
                         </h3>
                     </p>
                     <p class="cook"> Cooking time: {{ recipe.time }} minutes</p>
@@ -22,13 +22,15 @@
                         {% endfor %}
                     </b>
                     <p class="ins">Instructions</p>
-                    {% for instruction in recipe.instructions %}
-                    <li>{{ instruction.name }}</li>
-                    {% endfor %}
+                    <ol> {# Move the <ol> tag outside the loop #}
+                        {% for instruction in recipe.instructions %}
+                        <li>{{ instruction.name }}</li>
+                        {% endfor %}
+                    </ol> {# Close the <ol> tag here #}
                 </div>
-                 {% endfor %}
-                {% else %}
-                <p class="sign2">No recipes added</p>
-                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p class="sign2">No recipes added</p>
+        {% endif %}
     </div>
 {% endblock %}
